@@ -12,7 +12,10 @@ git 기본 명령어:git init,add, commit, status, checkout
 #리모트 저장소 추가 git remote add <remote name>  <url>
 #브랜치 확인 git branch
 #리모트 저장소에 push하기: git push <remote name> <branch name>; 내보내기
+
+깃클론- 깃허브에 있는 프로젝트를 내 컴퓨터로 가져오기 
 ##리모트 저장소에서 로컬 저장소로 가져오기 :git clone <url>
+#차이점 보기 git diff
 ## 리모트 저장소 데이터를 로컬저장소에 업데이트: git fetch <remote>
 
 #리모트 저장소에 push하기: git push <remote name> <branch name>; 내보내기
