@@ -33,3 +33,50 @@ merge request-> code review. ->merge to master -> remove feature branch after me
 커밋= 해당 시점의 스냅샷 , 커밋이 추가될때마다 같은 방식으로 추가, 연결이 길어진다. 
 처음 생기는 브랜치 = master 
 *https://backlog.com/git-tutorial/kr/stepup/stepup1_1.html
+
+# 포크된 깃 레파지토리에 원본 레파지토리 업데이트
+포크된 레파지토리는 생성 기점을 기준으로 이후 발생한 원본 레파지토리 변경이 반영됮 않는다. 
+깃 레파지토리를 경유해 fork된 레파지토리 원본 변경사항 반영 
+로컬 깃 레파지토리에 upstream 이라는 이름으로 원본 레파지토리 등록 하고 git pull, git push로 
+원본 변경사항을 fork레파지토리에 반영 
+참고 http://taewan.kim/post/updating_fork/
+ 
+원본 repository = 남의 것
+Fork repository = 내 것
+
+1) 포크된 레파지토리 로컬 복제 
+git clone [원본주소]
+
+2)  로컬 깃 레파지토리에 원격 레파지토리 등록 
+git remote add [원본 레파짓 이름] [원본주소]
+# 확인 git remote -v 
+
+3) 원본 git remote로 부터 로컬 레파지토리 update
+git pull [원본 레파짓 이름] [로컬 레파짓 브랜치이름] 
+
+4) 원본 레파지토리 변경사항 fork된 레파지토리에 반영
+git push [원격_포크_레파짓_이름] [로컬 레파짓 브랜치 이름]
+
+에러: pull시 충돌-자동병합 실패 
+CONFLICT (content): Merge conflict in ***.txt
+Automatic merge failed; fix conflicts and then commit the result.
+#왜? 각각 브랜치에서 변경한 내용이 ***.txt의 같은 행에 포함되어 있기 때문. 
+#충돌 내용 확인 
+실제 ***.txt에 가보면 
+<<<<<HEAD
+~~ GIT에서 PULL 되기 전 내코드(과거코드)
+======
+~~ GIT에서 PULL 된 코드 (최신)
+ 
+#충돌 부분 저장
+둘중 어느 코드를 사용할지 고른 후 안 쓸 코드 지우기. 
+
+# 다시 커밋
+git add ****.txt
+git commit -m "작업내용"
+
+#다시 git pull 
+
+
+참고: https://m.blog.naver.com/PostView.nhn?blogId=kbs4674&logNo=221174678439&proxyReferer=https:%2F%2Fwww.google.com%2F
+https://backlog.com/git-tutorial/kr/stepup/stepup2_7.html
